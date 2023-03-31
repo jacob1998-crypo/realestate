@@ -1,0 +1,263 @@
+
+
+
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %} | Register Account{% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+  <!-- <style>
+    /* Style for Register Form */
+    #register {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 56px); /* subtract navbar height */
+      background-image: url("{% static 'images/hm2.jpg'%}");
+      overflow:scroll;
+      top: 0;
+     
+
+    }
+
+    #register form {
+      width: 100%;
+      max-width: 1000px;
+      padding: 2rem;
+      background-color: transparent;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      height: 60vh;
+      
+    }
+
+    #register form h4 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    #register form .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    #register form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color:blue;
+    }
+
+    #register form input[type="text"],
+    #register form input[type="email"],
+    #register form input[type="password"] {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      color: #333;
+      background-color: transparent;
+    }
+
+    #register form input[type="submit"] {
+      margin-top: 1.5rem;
+      padding: 0.75rem;
+      background-color: #28a745;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #register form input[type="submit"]:hover {
+      background-color: #218838;
+    }
+  </style> -->
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,200&display=swap');
+ 
+ *{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Poppins', sans-serif;
+ }
+ 
+ #resgister{
+   background-color: #fff;
+   margin-top: 50px;
+   position: relative;
+   height: 100vh;
+   background-image: url('/images/im8.jpg');
+   background-size: cover;
+   background-position: center;
+ }
+ 
+ /* Add some padding to the top and bottom of the section */
+ #register {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 40px 0 20px 0;
+   }
+   
+   /* Center the form horizontally */
+   .container {
+     display: flex;
+     justify-content: center;
+     width: 100%;
+   }
+ 
+   form{
+     width: 600px;
+     border: 1px solid #ccc;
+     background: #fff;
+     padding: 20px;
+     border-radius: 8px;
+     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+   }
+ 
+   .form-group{
+     display: flex;
+     align-items: center;
+   }
+   
+   /* Style the form header */
+   h4 {
+     margin-bottom: 30px;
+     font-size: 28px;
+     font-weight: 700;
+     color: #333;
+     text-align: center;
+   }
+   
+   /* Style the form labels */
+   label {
+     display: block;
+     margin-bottom: 10px;
+     font-size: 18px;
+     font-weight: 500;
+     color: #333;
+     width: 40%;
+   }
+   
+   /* Style the form inputs */
+   input[type="text"],
+   input[type="email"],
+   input[type="password"] {
+     display: block;
+     width: 100%;
+     padding: 10px;
+     margin-bottom: 20px;
+     font-size: 16px;
+     font-weight: 400;
+     color: #333;
+     background-color: #f7f7f7;
+     border: none;
+     border-radius: 4px;
+     box-shadow: none;
+     transition: background-color 0.2s ease-in-out;
+   }
+   
+   /* Style the form inputs on focus */
+   input[type="text"]:focus,
+   input[type="email"]:focus,
+   input[type="password"]:focus {
+     outline: none;
+     background-color: #fff;
+     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+   }
+   
+   /* Style the form submit button */
+   input[type="submit"] {
+     display: flex;
+     flex-direction: column;
+     margin: auto;
+     width: fit-content;
+     padding: 12px 20px;
+     font-size: 16px;
+     font-weight: bold;
+     letter-spacing: 1.1px;
+     color: #fff;
+     background-color: #007bff;
+     border: none;
+     border-radius: 4px;
+     box-shadow: none;
+     transition: background-color 0.2s ease-in-out;
+   }
+   
+   /* Style the form submit button on hover */
+   input[type="submit"]:hover {
+     background-color: #444;
+     cursor: pointer;
+   }
+ 
+   .form-group input{
+     border: 1px solid #ccc;
+     border-left: none;
+     border-radius: 0 8px 8px 0;
+   }
+ 
+ footer {
+   position: absolute;
+   background-color: #222222c0;
+   color: #fff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   padding: 1em;
+   width: 100%;
+   height: 1cm;
+   bottom: 1px;
+ }
+ 
+ footer p{
+     font-size: 10px;
+ }
+  </style>
+
+  <section id="register">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <form action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
+            <h4>Register</h4>
+            <!-- Alerts -->
+            <div class="form-group">
+              <label for="first_name">First Name</label>
+              <input type="text" name="first_name" required>
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last Name</label>
+              <input type="text" name="last_name" required>
+            </div>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" name="username" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Confirm Password</label>
+              <input type="password" name="password2" required>
+            </div>
+            <input type="submit" value="Register">
+          </form>
+{% endblock content %}       
